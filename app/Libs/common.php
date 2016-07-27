@@ -1,11 +1,7 @@
 <?php
-/**
-  * wechat php test
-  */
-
-//define your token
 
 
+namespace App\Libraries;
 class wechatCallbackapiTest
 {
 	public function valid()
