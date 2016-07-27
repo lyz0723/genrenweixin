@@ -6,7 +6,7 @@
  * Time: 21:08
  */
 namespace App\Http\Controllers;
-use App\Libs\common;
+use App\Libs\Common;
 class IndexController extends Controller{
     public function index(){
         //define("TOKEN", "weixin");

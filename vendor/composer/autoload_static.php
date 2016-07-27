@@ -3187,7 +3187,7 @@ class ComposerStaticInite076afe45cb086ab2da8c82077e278c9
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-        'wechatCallbackapiTest' => __DIR__ . '/../..' . '/app/libs/common.php',
+        'wechatCallbackapiTest' => __DIR__ . '/../..' . '/app/libs/Common.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
