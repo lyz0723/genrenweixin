@@ -1,7 +1,6 @@
 <?php
-
-
 namespace App\Libs;
+
 class wechatCallbackapiTest
 {
 	public function valid()
