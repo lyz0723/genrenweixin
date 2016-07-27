@@ -62,7 +62,7 @@ class wechatCallbackapiTest
                          * 图灵结束
                          * */
                     }
-                   
+
 
                 }else{
                     echo "Input something...";
