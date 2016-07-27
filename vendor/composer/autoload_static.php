@@ -292,7 +292,7 @@ class ComposerStaticInite076afe45cb086ab2da8c82077e278c9
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'App\\Jobs\\Job' => __DIR__ . '/../..' . '/app/Jobs/Job.php',
-        'App\\Libs\\wechatCallbackapiTest' => __DIR__ . '/../..' . '/app/Libs/Common.php',
+        'App\\Libs\\wechatCallbackapiTest' => __DIR__ . '/../..' . '/app/Libs/wechatCallbackapiTest.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
