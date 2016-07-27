@@ -6,6 +6,6 @@ class IndexController extends Controller{
     public function index(){
         define("TOKEN", "weixin");
         $wechatObj = new wechatCallbackapiTest();
-        $wechatObj->valid();
+        //$wechatObj->valid();
     }
 }
