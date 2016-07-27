@@ -6,6 +6,7 @@
  * Time: 21:08
  */
 namespace App\Http\Controllers;
+use App\libs\common;
 use wechatCallbackapiTest;
 class IndexController extends Controller{
     public function index(){
