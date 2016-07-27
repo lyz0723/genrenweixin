@@ -6,7 +6,7 @@
  * Time: 21:08
  */
 namespace App\Http\Controllers;
-use wechatCallbackapiTest;
+use App\libs\common;
 class IndexController extends Controller{
     public function index(){
         //define("TOKEN", "weixin");
