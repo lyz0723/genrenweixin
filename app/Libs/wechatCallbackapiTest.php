@@ -38,15 +38,37 @@ class wechatCallbackapiTest
 							<Content><![CDATA[%s]]></Content>
 							<FuncFlag>0</FuncFlag>
 							</xml>";
-				if(!empty( $keyword ))
+            if($msgType = "text"){
+                if(!empty( $keyword ))
                 {
-              		$msgType = "text";
-                	$contentStr = "Welcome to wechat world!";
-                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                	echo $resultStr;
+                    if($keyword=='你好'){
+                        $contentStr = "Welcome to wechat world!";
+                        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                        echo $resultStr;
+                    }else{
+                        /*
+                       * 图灵机器人
+                       * */
+                        //定义URL链接操作
+                        $url="http://www.tuling123.com/openapi/api?key=1f3a6c1438f6935ea3344fc678cc509c&info=".$keyword;
+                        $str=file_get_contents($url);
+                        $json=json_decode($str,true);
+                        //定义回复内容类型
+                        $contentStr=$json['text'];
+                        //格式化字符串
+                        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                        echo $resultStr;
+                        /*
+                         * 图灵结束
+                         * */
+                    }
+                   
+
                 }else{
-                	echo "Input something...";
+                    echo "Input something...";
                 }
+            }
+
 
         }else {
         	echo "";
