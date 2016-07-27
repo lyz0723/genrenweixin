@@ -44,7 +44,7 @@ class wechatCallbackapiTest
                     if($keyword=='你好'){
                         $contentStr = "Welcome to wechat world!";
                         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                        echo $resultStr;
+                        return $resultStr;
                     }else{
                         /*
                        * 图灵机器人
@@ -57,7 +57,7 @@ class wechatCallbackapiTest
                         $contentStr=$json['text'];
                         //格式化字符串
                         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                        echo $resultStr;
+                        return $resultStr;
                         /*
                          * 图灵结束
                          * */
@@ -68,7 +68,6 @@ class wechatCallbackapiTest
                     echo "Input something...";
                 }
             }
-
 
         }else {
         	echo "";
