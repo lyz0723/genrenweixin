@@ -9,10 +9,9 @@ namespace App\Http\Controllers;
 use App\libs\common;
 class IndexController extends Controller{
     public function index(){
-        define("TOKEN", "weixin");
+        //define("TOKEN", "weixin");
         $wechatObj = new wechatCallbackapiTest();
-        $wechatObj->valid();
-        $obj=$wechatObj->responseMsg();
+        $obj=$wechatObj->valid();
         echo $obj;
     }
 }
