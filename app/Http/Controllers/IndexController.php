@@ -12,8 +12,7 @@ class IndexController extends Controller{
         define("TOKEN", "weixin");
         $wechatObj = new wechatCallbackapiTest();
         $wechatObj->valid();
-        $arr=new wechatCallbackapiTest();
-        $obj=$arr->responseMsg();
+        $obj=$wechatObj->responseMsg();
         echo $obj;
     }
 }
