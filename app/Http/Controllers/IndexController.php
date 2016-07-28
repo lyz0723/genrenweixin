@@ -11,10 +11,9 @@ class IndexController extends Controller{
         // 1.将timestamp， nonce，token 按字典排序
 
         $timestamp =Input::get('timestamp');
-        echo $timestamp;
-        $nonce     = Request::input('nonce');
+        $nonce     = Input::get('nonce');
         $token     = 'weixin';
-        $signature = Request::input('signature');
+        $signature = Input::get('signature');
         $array     = array( $timestamp, $nonce, $token );
         sort( $array );
         // 2.将排序后的三个参数拼接之后用sha1加密
@@ -32,7 +31,7 @@ class IndexController extends Controller{
     {
         //get post data, May be due to the different environments
         //$postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
-        $postStr=file_get_contents('php://input');
+        $postStr=Input::post('HTTP_RAW_POST_DATA');
         print_r($postStr);
         //extract post data
         if (!empty($postStr)){
