@@ -9,7 +9,6 @@ class IndexController extends Controller{
         // 1.将timestamp， nonce，token 按字典排序
 
         $timestamp =Input::get('timestamp');
-        echo $timestamp;die;
         $nonce     = Input::get('nonce');
         $token     = 'weixin';
         $signature = Input::get('signature');
@@ -23,7 +22,7 @@ class IndexController extends Controller{
             echo $_GET['echostr'];
             exit;
         }else {
-            $this -> responseMsg();
+            //$this -> responseMsg();
         }
     }
     public function responseMsg()
