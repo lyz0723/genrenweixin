@@ -7,7 +7,7 @@ class IndexController extends Controller{
         // 1.将timestamp， nonce，token 按字典排序
         $timestamp = $_GET['timestamp'];
         $nonce     = $_GET['nonce'];
-        $token     = 'imooc';
+        $token     = 'weixin';
         $signature = $_GET['signature'];
         $array     = array( $timestamp, $nonce, $token );
         sort( $array );
@@ -19,7 +19,7 @@ class IndexController extends Controller{
             echo $_GET['echostr'];
             exit;
         }else {
-            //$this -> reponseMeg();
+            $this -> reponseMeg();
         }
     }
 }
