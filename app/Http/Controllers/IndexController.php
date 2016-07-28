@@ -31,7 +31,7 @@ class IndexController extends Controller{
     {
         //get post data, May be due to the different environments
         $postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
-
+        print_r($postStr);die;
         //extract post data
         if (!empty($postStr)){
             /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
