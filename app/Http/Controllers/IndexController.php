@@ -11,6 +11,7 @@ class IndexController extends Controller{
         // 1.将timestamp， nonce，token 按字典排序
 
         $timestamp =Request::input('timestamp');
+        echo $timestamp;
         $nonce     = Request::input('nonce');
         $token     = 'weixin';
         $signature = Request::input('signature');
