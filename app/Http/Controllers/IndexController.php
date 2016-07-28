@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Libs\wechatCallbackapiTest;
+//use App\Libs\wechatCallbackapiTest;
+use Request;
+use Session;
+use Validator;
+use Input , Response;
 class IndexController extends Controller{
     public function index(){
         // 1.将timestamp， nonce，token 按字典排序
-        $timestamp = $_GET['timestamp'];
-        $nonce     = $_GET['nonce'];
+
+        $timestamp =Request::input('timestamp');
+        $nonce     = Request::input('nonce');
         $token     = 'weixin';
-        $signature = $_GET['signature'];
+        $signature = Request::input('signature');
         $array     = array( $timestamp, $nonce, $token );
         sort( $array );
         // 2.将排序后的三个参数拼接之后用sha1加密
