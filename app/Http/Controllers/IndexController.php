@@ -10,7 +10,7 @@ class IndexController extends Controller{
     public function index(){
         // 1.将timestamp， nonce，token 按字典排序
 
-        $timestamp =Request::input('timestamp');
+        $timestamp =$_GET('timestamp');
         echo $timestamp;
         $nonce     = Request::input('nonce');
         $token     = 'weixin';
