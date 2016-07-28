@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 //use App\Libs\wechatCallbackapiTest;
 use Request;
-use Session;
-use Validator;
 use Input , Response;
 class IndexController extends Controller{
     public function index(){
         // 1.将timestamp， nonce，token 按字典排序
 
         $timestamp =Input::get('timestamp');
+        echo $timestamp;die;
         $nonce     = Input::get('nonce');
         $token     = 'weixin';
         $signature = Input::get('signature');
