@@ -45,21 +45,6 @@ class wechatCallbackapiTest
             if($msgType=="text"){
                 if(!empty( $keyword ))
                 {
-                    $pdo=new PDO('mysql:host=127.0.0.1;dbname=weixin','root','root');
-                    //设置字符集
-                    $pdo->exec('set names utf8');
-                    $sql="select * from we_rule inner JOIN  we_img ON  we_rule.r_id=we_img.rid where r_key='$keyword'";
-                    $list=$pdo->query($sql);
-                    $row=$list->fetchAll(PDO::FETCH_ASSOC);
-                    // print_r($row);
-                    if($keyword==$row[0]['r_key']){
-                        $contentStr = $row[0]['r_content'];
-
-                        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                        echo $resultStr;
-                    }
-
-                    else{
                         /*
                          * 图灵机器人
                          * */
@@ -75,7 +60,6 @@ class wechatCallbackapiTest
                         /*
                          * 图灵结束
                          * */
-                    }
                 }else{
                     echo "Input something...";
                 }
