@@ -29,7 +29,7 @@ class IndexController extends Controller{
     {
         //get post data, May be due to the different environments
         //$postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
-        $postStr=$GLOBALS["HTTP_RAW_POST_DATA"];
+        $postStr=Request::getContent();
         print_r($postStr);
         //extract post data
         if (!empty($postStr)){
