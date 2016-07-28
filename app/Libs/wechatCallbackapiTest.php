@@ -21,16 +21,19 @@ class wechatCallbackapiTest
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
         print_r($postStr);
       	//extract post data
-		if (!empty($postStr)){
-                /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
-                   the best way is to check the validity of xml by yourself */
-                libxml_disable_entity_loader(true);
-              	$postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-                $fromUsername = $postObj->FromUserName;
-                $toUsername = $postObj->ToUserName;
-                $keyword = trim($postObj->Content);
-                $time = time();
-                $textTpl = "<xml>
+        if (!empty($postStr)){
+            /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
+               the best way is to check the validity of xml by yourself */
+            libxml_disable_entity_loader(true);
+            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $fromUsername = $postObj->FromUserName;
+            $toUsername = $postObj->ToUserName;
+            $keyword = trim($postObj->Content);
+            $time = time();
+            //获取用户发送消息的类型
+            $msgType  = $postObj->MsgType;
+            //定义发送文字消息的接口
+            $textTpl = "<xml>
 							<ToUserName><![CDATA[%s]]></ToUserName>
 							<FromUserName><![CDATA[%s]]></FromUserName>
 							<CreateTime>%s</CreateTime>
@@ -38,17 +41,28 @@ class wechatCallbackapiTest
 							<Content><![CDATA[%s]]></Content>
 							<FuncFlag>0</FuncFlag>
 							</xml>";
-            if($msgType = "text"){
+
+            if($msgType=="text"){
                 if(!empty( $keyword ))
                 {
-                    if($keyword=='你好'){
-                        $contentStr = "Welcome to wechat world!";
+                    $pdo=new PDO('mysql:host=127.0.0.1;dbname=weixin','root','root');
+                    //设置字符集
+                    $pdo->exec('set names utf8');
+                    $sql="select * from we_rule inner JOIN  we_img ON  we_rule.r_id=we_img.rid where r_key='$keyword'";
+                    $list=$pdo->query($sql);
+                    $row=$list->fetchAll(PDO::FETCH_ASSOC);
+                    // print_r($row);
+                    if($keyword==$row[0]['r_key']){
+                        $contentStr = $row[0]['r_content'];
+
                         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                         echo $resultStr;
-                    }else{
+                    }
+
+                    else{
                         /*
-                       * 图灵机器人
-                       * */
+                         * 图灵机器人
+                         * */
                         //定义URL链接操作
                         $url="http://www.tuling123.com/openapi/api?key=1f3a6c1438f6935ea3344fc678cc509c&info=".$keyword;
                         $str=file_get_contents($url);
@@ -62,17 +76,13 @@ class wechatCallbackapiTest
                          * 图灵结束
                          * */
                     }
-
-
                 }else{
                     echo "Input something...";
                 }
             }
-
-
         }else {
-        	echo "";
-        	exit;
+            echo "";
+            exit;
         }
     }
 
