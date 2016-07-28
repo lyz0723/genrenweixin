@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::any('index','IndexController@index');
 
-Route::get('weixin', 'WechatController@index');
-Route::post('weixin', 'WechatController@index');
+Route::get('/', 'WechatController@index');
+Route::post('/', 'WechatController@index');
