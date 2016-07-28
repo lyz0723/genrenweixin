@@ -19,7 +19,7 @@ class IndexController extends Controller{
             echo $_GET['echostr'];
             exit;
         }else {
-            $this -> reponseMeg();
+            //$this -> reponseMeg();
         }
     }
 }
