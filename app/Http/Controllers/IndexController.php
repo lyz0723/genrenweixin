@@ -24,6 +24,7 @@ class IndexController extends Controller{
             echo $_GET['echostr'];
             exit;
         }else {
+            echo 1;
             $this -> responseMsg();
         }
     }
