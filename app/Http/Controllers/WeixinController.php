@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use Input , Response;
 class WeixinController extends Controller
-{ $this->responseMsg();
+{
     public function __construct()
     {
         $this->beforeFilter('weixin', array('on' => 'get|post'));
@@ -17,7 +17,7 @@ class WeixinController extends Controller
     public function index()
     {
         return Input::get('echostr');
-
+       
     }
     public function responseMsg()
     {
