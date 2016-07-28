@@ -22,7 +22,7 @@ class IndexController extends Controller{
             echo $_GET['echostr'];
             exit;
         }else {
-            //$this -> responseMsg();
+            $this -> responseMsg();
         }
     }
     public function responseMsg()
