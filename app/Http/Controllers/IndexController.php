@@ -58,7 +58,7 @@ class IndexController extends Controller{
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             }else{
-                echo "Input something...";
+                echo "no";
             }
 
         }else {
