@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::any('index','IndexController@index');
+Route::resource('api/v1', 'WeixinController');
