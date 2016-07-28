@@ -22,14 +22,14 @@ class IndexController extends Controller{
             echo $_GET['echostr'];
             exit;
         }else {
-            $this -> responseMsg();
+            //$this -> responseMsg();
         }
     }
     public function responseMsg()
-    {echo 1;
+    {
         //get post data, May be due to the different environments
         //$postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
-        $postStr=$GLOBALS['HTTP_RAW_POST_DATA'];
+        $postStr=$_SERVER["HTTP_RAW_POST_DATA"];
         print_r($postStr);
         //extract post data
         if (!empty($postStr)){
