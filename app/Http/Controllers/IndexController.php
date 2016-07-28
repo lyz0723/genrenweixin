@@ -18,7 +18,7 @@ class IndexController extends Controller{
         $tmpstr    = implode('', $array);
         $tmpstr    = sha1( $tmpstr );
         // 3.将加密后的字符串与signature进行对比，判断该请求是否来自微信
-        $echoster=$_GET['echostr'];
+        $echoster=Input::get('echostr');
         if ( $tmpstr == $signature && $echoster) {
             echo $_GET['echostr'];
             exit;
