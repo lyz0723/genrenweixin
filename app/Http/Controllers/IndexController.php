@@ -36,6 +36,7 @@ class IndexController extends Controller{
         print_r($postStr);
         //extract post data
         if (!empty($postStr)){
+            echo 2;
             /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
                the best way is to check the validity of xml by yourself */
             libxml_disable_entity_loader(true);
