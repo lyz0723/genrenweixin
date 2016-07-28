@@ -13,11 +13,12 @@ class WeixinController extends Controller
     public function __construct()
     {
         $this->beforeFilter('weixin', array('on' => 'get|post'));
+        $this->responseMsg();
     }
     public function index()
     {
         return Input::get('echostr');
-       
+
     }
     public function responseMsg()
     {
