@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 //use App\Libs\wechatCallbackapiTest;
 use Request;
 use Input , Response;
+use Log;
 class IndexController extends Controller{
     public function index(){
         // 1.将timestamp， nonce，token 按字典排序
@@ -31,7 +32,7 @@ class IndexController extends Controller{
         echo 1;
         //get post data, May be due to the different environments
         //$postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
-        $postStr=Request::getContent();
+        $postStr=file_get_contents("php://input");;
         print_r($postStr);
         //extract post data
         if (!empty($postStr)){
