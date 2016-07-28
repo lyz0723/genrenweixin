@@ -1,11 +1,13 @@
 <?php
 namespace App\Libs;
-use Request;
+
 class wechatCallbackapiTest
 {
 	public function valid()
     {
+
                $echoStr = $_GET["echostr"];
+
         //valid signature , option
         if($this->checkSignature()){
         	echo $echoStr;
@@ -16,8 +18,8 @@ class wechatCallbackapiTest
     public function responseMsg()
     {
 		//get post data, May be due to the different environments
-		$postStr = Request::getContent();
-       return $postStr;
+		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+        print_r($postStr);
       	//extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
@@ -42,7 +44,7 @@ class wechatCallbackapiTest
                     if($keyword=='你好'){
                         $contentStr = "Welcome to wechat world!";
                         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                        return $resultStr;
+                        echo $resultStr;
                     }else{
                         /*
                        * 图灵机器人
@@ -55,7 +57,7 @@ class wechatCallbackapiTest
                         $contentStr=$json['text'];
                         //格式化字符串
                         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                        return $resultStr;
+                        echo $resultStr;
                         /*
                          * 图灵结束
                          * */
