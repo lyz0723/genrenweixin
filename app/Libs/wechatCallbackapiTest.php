@@ -1,11 +1,10 @@
 <?php
 namespace App\Libs;
-use Input;
 class wechatCallbackapiTest
 {
 	public function valid()
     {
-        $echoStr = $_GET["echostr"];
+               $echoStr = $_GET["echostr"];
         //valid signature , option
         if($this->checkSignature()){
         	echo $echoStr;
@@ -16,7 +15,7 @@ class wechatCallbackapiTest
     public function responseMsg()
     {
 		//get post data, May be due to the different environments
-		$postStr = file_get_contents('php://input');
+		$postStr = $GLOBALS['HTTP_RAW_POST_DATA'];
       	//extract post data
         if (!empty($postStr)){
             /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
