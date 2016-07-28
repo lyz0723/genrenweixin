@@ -28,6 +28,7 @@ class IndexController extends Controller{
     }
     public function responseMsg()
     {
+        echo 1;
         //get post data, May be due to the different environments
         //$postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
         $postStr=Request::getContent();
