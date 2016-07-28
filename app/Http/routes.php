@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::any('index','IndexController@index');
-Route::resource('api/v1', 'WeixinController');
+
+Route::get('weixin', 'WechatController@index');
+Route::post('weixin', 'WechatController@index');
