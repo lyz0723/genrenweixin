@@ -32,7 +32,7 @@ class IndexController extends Controller{
         echo 1;
         //get post data, May be due to the different environments
         //$postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
-        $postStr=$GLOBALS["HTTP_RAW_POST_DATA"];
+        $postStr=file_get_contents('php://input');
         print_r($postStr);
         //extract post data
         if (!empty($postStr)){
