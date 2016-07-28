@@ -17,8 +17,7 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = Request::getContent();
-        $arr="fsaddfs";
-        return $arr;
+       return $postStr;
       	//extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
