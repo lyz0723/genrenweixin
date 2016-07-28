@@ -1,38 +1,31 @@
 <?php
+/**
+ * wechat php test
+ */
 
-namespace App\Http\Controllers;
-//use App\Libs\wechatCallbackapiTest;
-use Request;
-use Input , Response;
-class IndexController extends Controller{
-    public function index(){
-        // 1.将timestamp， nonce，token 按字典排序
+//define your token
+define("TOKEN", "weixin");
+$wechatObj = new wechatCallbackapiTest();
+$wechatObj->valid();
 
-        $timestamp =Input::get('timestamp');
-        $nonce     = Input::get('nonce');
-        $token     = 'weixin';
-        $signature = Input::get('signature');
-        $array     = array( $timestamp, $nonce, $token );
-        sort( $array );
-        // 2.将排序后的三个参数拼接之后用sha1加密
-        $tmpstr    = implode('', $array);
-        $tmpstr    = sha1( $tmpstr );
-        // 3.将加密后的字符串与signature进行对比，判断该请求是否来自微信
-        $echoster=Input::get('echostr');
-        if ( $tmpstr == $signature && $echoster) {
-            echo $_GET['echostr'];
+class wechatCallbackapiTest
+{
+    public function valid()
+    {
+        $echoStr = $_GET["echostr"];
+
+        //valid signature , option
+        if($this->checkSignature()){
+            echo $echoStr;
             exit;
-        }else {
-            $this -> responseMsg();
         }
     }
+
     public function responseMsg()
     {
-        echo 1;
         //get post data, May be due to the different environments
-        //$postStr =   isset($GLOBALS["HTTP_RAW_POST_DATA"]) ?  $GLOBALS["HTTP_RAW_POST_DATA"]  : "" ;
-        $postStr=Request::getContent();
-        print_r($postStr);
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+
         //extract post data
         if (!empty($postStr)){
             /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
@@ -67,4 +60,30 @@ class IndexController extends Controller{
         }
     }
 
+    private function checkSignature()
+    {
+        // you must define TOKEN by yourself
+        if (!defined("TOKEN")) {
+            throw new Exception('TOKEN is not defined!');
+        }
+
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
+
+        $token = TOKEN;
+        $tmpArr = array($token, $timestamp, $nonce);
+        // use SORT_STRING rule
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+
+        if( $tmpStr == $signature ){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
+
+?>
