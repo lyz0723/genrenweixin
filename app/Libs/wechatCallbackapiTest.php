@@ -1,6 +1,6 @@
 <?php
 namespace App\Libs;
-
+use Request;
 class wechatCallbackapiTest
 {
 	public function valid()
@@ -18,7 +18,7 @@ class wechatCallbackapiTest
     public function responseMsg()
     {
 		//get post data, May be due to the different environments
-        $postStr = file_get_contents("php://input");
+		$postStr = Request::getContent();
       	//extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
