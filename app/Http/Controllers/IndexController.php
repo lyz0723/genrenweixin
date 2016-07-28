@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers;
 use App\Libs\wechatCallbackapiTest;
+use Request;
+use Session;
+use Validator;
+use Input , Response;
 class IndexController extends Controller{
     public function index(){
-        // 1.将timestamp， nonce，token 按字典排序
-        $timestamp = $_GET['timestamp'];
-        $nonce     = $_GET['nonce'];
-        $token     = 'weixin';
-        $signature = $_GET['signature'];
-        $array     = array( $timestamp, $nonce, $token );
-        sort( $array );
-        // 2.将排序后的三个参数拼接之后用sha1加密
-        $tmpstr    = implode('', $array);
-        $tmpstr    = sha1( $tmpstr );
-        // 3.将加密后的字符串与signature进行对比，判断该请求是否来自微信
-        if ( $tmpstr == $signature  ) {
-            echo $_GET['echostr'];
-            exit;
-        }else {
-            //$this -> reponseMeg();
+        // 获取到微信请求里包含的几项内容
+        $signature = Input::get('signature');
+        $timestamp = Input::get('timestamp');
+        $nonce     = Input::get('nonce');
+
+        // ninghao 是我在微信后台手工添加的 token 的值
+        $token = 'wweixin';
+
+        // 加工出自己的 signature
+        $our_signature = array($token, $timestamp, $nonce);
+        sort($our_signature, SORT_STRING);
+        $our_signature = implode($our_signature);
+        $our_signature = sha1($our_signature);
+
+        // 用自己的 signature 去跟请求里的 signature 对比
+        if ($our_signature != $signature) {
+            return false;
         }
     }
 }
