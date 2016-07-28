@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Libs\wechatCallbackapiTest;
-use Input;
+use Response,Input;
 class IndexController extends Controller{
     public function index(){
         // 获取到微信请求里包含的几项内容
